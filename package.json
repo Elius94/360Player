@@ -1,0 +1,43 @@
+{
+  "name": "360viewer",
+  "version": "1.0.0",
+  "description": "Simple Panorama Viewer",
+  "main": "public/dist/index.js",
+  "types": "public/dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "public/"
+  ],
+  "scripts": {
+    "lint": "eslint ./src/ --ext .ts",
+    "build": "node ./esbuild.js && npx seo-injector --build-dir public --pretty true --verbose true",
+    "prepare": "npm run build",
+    "start": "node ./esbuild.js --watch --dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elius94/360viewer.git"
+  },
+  "devDependencies": {
+    "compress-images": "^2.0.5",
+    "esbuild": "^0.17.2",
+    "eslint": "^8.32.0",
+    "figlet": "^1.5.2",
+    "typescript-eslint": "^0.0.1-alpha.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "author": "Elia Lazzari",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Elius94/360viewer/issues"
+  },
+  "homepage": "https://github.com/Elius94/360viewer#readme",
+  "dependencies": {
+    "@photo-sphere-viewer/autorotate-plugin": "^5.0.2",
+    "@photo-sphere-viewer/core": "^5.0.2",
+    "@photo-sphere-viewer/gyroscope-plugin": "^5.0.2",
+    "@photo-sphere-viewer/stereo-plugin": "^5.0.2",
+    "photo-sphere-viewer-lensflare-plugin": "^1.0.1",
+    "typescript": "^4.9.4"
+  }
+}
