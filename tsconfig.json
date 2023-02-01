@@ -4,7 +4,7 @@
       "lib": ["DOM", "ESNext", "DOM.Iterable"],
       "module": "ESNext",
       "declaration": true,
-      "outDir": "./public/dist",
+      "outDir": "./_site/dist",
       // match output dir to input dir. e.g. dist/index instead of dist/src/index
       "rootDir": "./src",
       "typeRoots": [
