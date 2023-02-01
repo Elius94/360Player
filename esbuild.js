@@ -7,7 +7,7 @@ import figlet from "figlet"
 import Compress from "compress-images"
 
 const INPUT_IMAGE_PATH = "src/images/**/*.{jpg,JPG,jpeg,JPEG,png,svg,gif}"
-const OUTPUT_IMAGE_PATH = "_site/images/"
+const OUTPUT_IMAGE_PATH = "public/images/"
 
 const pkg = JSON.parse(fs.readFileSync("./package.json"))
 
@@ -32,7 +32,7 @@ const buildOptions = {
     minify: dev ? false : true,
     sourcemap: true,
     color: true,
-    outdir: "_site/dist",
+    outdir: "public/dist",
     target: ['chrome58', 'firefox57', 'safari11', 'edge18'],
     banner: {
         js: banner
@@ -48,8 +48,8 @@ const buildOptions = {
                     }
                     execSync("npx tsc --emitDeclarationOnly")
                     console.log("\u001b[36mTypeScript declarations generated!\u001b[37m")
-                    // copy src/index.html to _site/index.html
-                    fs.copyFileSync("src/index.html", "_site/index.html")
+                    // copy src/index.html to public/index.html
+                    fs.copyFileSync("src/index.html", "public/index.html")
                 })
             }
         },
@@ -91,7 +91,7 @@ if (dev) {
 
     // Enable serve mode
     await ctx.serve({
-        servedir: "_site",
+        servedir: "public",
         port: 8080,
         onRequest: (args) => {
             if (args.path === "/") {
