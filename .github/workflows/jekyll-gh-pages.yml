@@ -36,9 +36,6 @@ jobs:
 
       - name: Run ci
         run: npm ci
-      
-      - name: Run Build
-        run: npm run build
 
   # Deployment job
   deploy:
