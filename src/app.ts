@@ -5,11 +5,16 @@ import { AutorotatePlugin } from '@photo-sphere-viewer/autorotate-plugin';
 import { StereoPlugin } from '@photo-sphere-viewer/stereo-plugin';
 import '@photo-sphere-viewer/core/index.css';
 
-/*const viewer = */new Viewer({
+// parse arguments from the URL
+const args = new URLSearchParams(location.search);
+const panorama = args.get('panorama') || 'images/pano.jpg';
+const lensflaresSettings = {};
+
+new Viewer({
     container: document.querySelector('#viewer') as HTMLElement,
     caption: 'Elia Lazzari <b>&copy; 2023</b>',
     touchmoveTwoFingers: false,
-    panorama: 'images/pano.jpg',
+    panorama: panorama,
     mousewheelCtrlKey: true,
     defaultYaw: '130deg',
     navbar: 'autorotate zoom move caption gyroscope stereo fullscreen',
@@ -25,6 +30,6 @@ import '@photo-sphere-viewer/core/index.css';
             autorotatePitch: '5deg',
             autostartOnIdle: false
         }],
-        LensflarePlugin
+        [LensflarePlugin, lensflaresSettings]
     ]
 });

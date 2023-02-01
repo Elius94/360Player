@@ -16,7 +16,7 @@ const dev = process.argv.includes("--dev") || process.env.NODE_ENV === "developm
 
 const banner = "/* eslint-disable linebreak-style */\n" +
     "/*\n" +
-    figlet.textSync("Up Urban Climbing", { horizontalLayout: "full", font: "Big" }) +
+    figlet.textSync("Eliusoutdoor 360Player", { horizontalLayout: "full", font: "Big" }) +
     "\n" +
     `                                                                                v${pkg.version}\n\n\n` +
     `   ${pkg.description}\n\n` +

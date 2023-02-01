@@ -4,7 +4,7 @@
     "keywords": "virtualtour, virtual, tour, vr, 360, photosphere, streetview",
     "author": "Elia Lazzari",
     "openGraph": {
-        "url": "https://upurbanclimbing.it",
+        "url": "https://example.it",
         "title": "360 Viewer",
         "description": "360 Viewer",
         "image": "https://example.com/image.jpg",
@@ -14,7 +14,7 @@
     },
     "twitter": {
         "image": "https://example.com/image.jpg",
-        "url": "https://upurbanclimbing.it",
+        "url": "https://example.it",
         "card": "summary_large_image",
         "title": "360 Viewer",
         "description": "360 Viewer"
@@ -22,12 +22,12 @@
     "favicon": null,
     "manifest": null,
     "icons": [{
-            "src": "https://upurbanclimbing.it/icon-192.png",
+            "src": "https://example.it/icon-192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "https://upurbanclimbing.it/icon-512.png",
+            "src": "https://example.it/icon-512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
