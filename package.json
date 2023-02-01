@@ -1,17 +1,16 @@
 {
   "name": "360viewer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Simple Panorama Viewer",
   "main": "public/dist/index.js",
   "types": "public/dist/index.d.ts",
   "type": "module",
   "files": [
-    "public/"
+    "./"
   ],
   "scripts": {
     "lint": "eslint ./src/ --ext .ts",
     "build": "node ./esbuild.js && npx seo-injector --build-dir public --pretty true --verbose true",
-    "prepare": "npm run build",
     "start": "node ./esbuild.js --watch --dev"
   },
   "repository": {
