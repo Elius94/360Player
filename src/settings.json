@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "url": "giau-2",
+        "url": "Giau_2",
         "name": "Giau 2",
         "image": "images/Giau_2.jpg",
         "description": "Giau 2",
@@ -15,10 +15,53 @@
     },
     {
         "id": 2,
-        "url": "giau-1",
+        "url": "Giau_1",
         "name": "Giau 1",
         "image": "images/Giau_1.jpg",
         "description": "Giau 1",
+        "littlePlanet": true,
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "145deg",
+                    "pitch": "2deg"
+                }
+            },
+            {
+                "id": "moon",
+                "position": {
+                    "yaw": "30.6deg",
+                    "pitch": "41.2deg"
+                },
+                "color": {
+                    "h": 0.6,
+                    "s": 0.5,
+                    "l": 0.2
+                }
+            }
+        ],
+        "autorotatePoints": [
+            {
+                "position": { "yaw": "20.6deg", "pitch": "21.2deg" },
+                "pause": 0
+            },
+            {
+                "position": { "yaw": "185deg", "pitch": "2deg" },
+                "pause": 0
+            },
+            {
+                "position": { "yaw": "165deg", "pitch": "-90deg" },
+                "pause": 0
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "url": "PANO0001_pano_cleaned2",
+        "name": "Giau Night",
+        "image": "images/PANO0001_pano_cleaned2.jpg",
+        "description": "Giau Night",
         "littlePlanet": true,
         "lensflares": [
             {

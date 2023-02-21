@@ -3,6 +3,7 @@ import { LensflarePlugin } from 'photo-sphere-viewer-lensflare-plugin';
 import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';
 import { AutorotatePlugin } from '@photo-sphere-viewer/autorotate-plugin';
 import { StereoPlugin } from '@photo-sphere-viewer/stereo-plugin';
+import { EquirectangularTilesAdapter } from '@photo-sphere-viewer/equirectangular-tiles-adapter';
 //import { LittlePlanetAdapter } from '@photo-sphere-viewer/little-planet-adapter';
 import settings from './settings.json' assert { type: 'json' };
 import '@photo-sphere-viewer/core/index.css';
@@ -29,7 +30,7 @@ const LITTLEPLANET_DEF_ZOOM = 0
 
 // parse arguments from the URL
 const args = new URLSearchParams(location.search);
-const panorama = Number(args.get('panorama')) || 1;
+const panorama = Number(args.get('panorama')) || 3;
 const selectedPano = settings.find((pano) => pano.id === panorama);
 
 if (!selectedPano || Number.isNaN(panorama) || !settings || settings.length < panorama) {
@@ -40,11 +41,22 @@ const lensflaresSettings = selectedPano.lensflares;
 
 let littlePlanetEnabled = selectedPano.littlePlanet;
 
+const baseUrl = "images/"
+
 const viewer = new Viewer({
     container: document.querySelector('#viewer') as HTMLElement,
+    adapter: EquirectangularTilesAdapter,
     caption: 'Elia Lazzari <b>&copy; 2023</b> ' + selectedPano.description,
     touchmoveTwoFingers: false,
-    panorama: selectedPano.image,
+    panorama: {
+        width: 17920,
+        cols: 16,
+        rows: 8,
+        baseUrl: `${baseUrl}/${selectedPano.url}_preview.jpg`,
+        tileUrl: (col: number, row: number) => {
+            return `${baseUrl}tiles/${selectedPano.url}/${selectedPano.url}_${col}_${row}.jpg`
+        },
+    },
     mousewheelCtrlKey: false,
     defaultYaw: '130deg',
     fisheye: selectedPano.littlePlanet ? LITTLEPLANET_FISHEYE : false,
@@ -88,7 +100,7 @@ viewer.addEventListener('click', () => {
                 // Disable Little Planet.
                 const p = viewer.getPlugin("autorotate") as AutorotatePlugin
                 if (p) p.start()
-                viewer.setOption("maxFov", 70)
+                viewer.setOption("maxFov", 40)
                 viewer.setOption("mousewheel", true)
             })
         })
