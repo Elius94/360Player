@@ -6,6 +6,17 @@ import fs from "fs"
 import figlet from "figlet"
 import path from "path"
 
+// INSTALL MAGICK IF YOU ARE ON LINUX
+console.log("\u001b[36mInstalling dependencies...\u001b[37m")
+if (process.platform === "linux") {
+    execSync("sudo apt update")
+    execSync("sudo apt install imagemagick")
+} else if (process.platform === "win32") {
+    execSync("choco install imagemagick")
+} else if (process.platform === "darwin") {
+    execSync("brew install imagemagick")
+}
+
 const INPUT_INAGE_BASE_PATH = "src/images/"
 const OUTPUT_IMAGE_PATH = "public/images/"
 
@@ -97,8 +108,8 @@ const buildOptions = {
                                         fileSize.height = execSync(`magick.exe identify -format "%h" ${INPUT_INAGE_BASE_PATH}${file}`).toString().trim()
                                         break
                                     default:
-                                        fileSize.width = execSync(`magick identify -format "%w" ${INPUT_INAGE_BASE_PATH}${file}`).toString().trim()
-                                        fileSize.height = execSync(`magick identify -format "%h" ${INPUT_INAGE_BASE_PATH}${file}`).toString().trim()
+                                        fileSize.width = execSync(`identify -format "%w" ${INPUT_INAGE_BASE_PATH}${file}`).toString().trim()
+                                        fileSize.height = execSync(`identify -format "%h" ${INPUT_INAGE_BASE_PATH}${file}`).toString().trim()
                                         break
                                 }
                                 const tileWidth = Math.floor(fileSize.width / columns)
@@ -127,7 +138,7 @@ const buildOptions = {
                                         execSync(`magick.exe ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.jpg`)
                                         break
                                     default:
-                                        execSync(`magick ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.jpg`)
+                                        execSync(`convert ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.jpg`)
                                         break
                                 }
 
@@ -148,7 +159,7 @@ const buildOptions = {
                                         ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].jpg`)
                                         break
                                     default:
-                                        execSync(`magick ${OUTPUT_IMAGE_PATH}${file} \
+                                        execSync(`convert ${OUTPUT_IMAGE_PATH}${file} \
                                         -crop ${tileWidth}x${tileHeight} \
                                         -set filename:tile "%[fx:page.x/${tileWidth}]_%[fx:page.y/${tileHeight}]" \
                                         -set filename:orig %t \
