@@ -125,7 +125,7 @@ const buildOptions = {
                                         execSync(`magick.exe ${INPUT_INAGE_BASE_PATH}${file} -resize ${adaptedWidth}x${adaptedHeight} -quality 70 ${OUTPUT_IMAGE_PATH}${file}`)
                                         break
                                     default:
-                                        execSync(`magick ${INPUT_INAGE_BASE_PATH}${file} -resize ${adaptedWidth}x${adaptedHeight} -quality 70 ${OUTPUT_IMAGE_PATH}${file}`)
+                                        execSync(`convert ${INPUT_INAGE_BASE_PATH}${file} -resize ${adaptedWidth}x${adaptedHeight} -quality 70 ${OUTPUT_IMAGE_PATH}${file}`)
                                         break
                                 }
 
