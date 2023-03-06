@@ -6,12 +6,8 @@
         "image": "images/Giau_2.jpg",
         "description": "Giau 2",
         "littlePlanet": true,
-        "lensflares": [
-            
-        ],
-        "autorotatePoints": [
-            
-        ]
+        "lensflares": [],
+        "autorotatePoints": []
     },
     {
         "id": 2,
@@ -40,61 +36,44 @@
                     "l": 0.2
                 }
             }
-        ],
-        "autorotatePoints": [
-            {
-                "position": { "yaw": "20.6deg", "pitch": "21.2deg" },
-                "pause": 0
-            },
-            {
-                "position": { "yaw": "185deg", "pitch": "2deg" },
-                "pause": 0
-            },
-            {
-                "position": { "yaw": "165deg", "pitch": "-90deg" },
-                "pause": 0
-            }
         ]
     },
     {
         "id": 3,
-        "url": "PANO0001_pano_cleaned2",
-        "name": "Giau Night",
-        "image": "images/PANO0001_pano_cleaned2.jpg",
-        "description": "Giau Night",
+        "url": "gardesana",
+        "name": "Cima della Gardesana",
+        "image": "images/gardesana.jpg",
+        "description": "View from the bottom of the Gardesana Peak",
         "littlePlanet": true,
         "lensflares": [
             {
                 "id": "sun",
                 "position": {
-                    "yaw": "145deg",
-                    "pitch": "2deg"
-                }
-            },
-            {
-                "id": "moon",
-                "position": {
-                    "yaw": "30.6deg",
-                    "pitch": "41.2deg"
-                },
-                "color": {
-                    "h": 0.6,
-                    "s": 0.5,
-                    "l": 0.2
+                    "yaw": "100deg",
+                    "pitch": "45deg"
                 }
             }
         ],
         "autorotatePoints": [
             {
-                "position": { "yaw": "20.6deg", "pitch": "21.2deg" },
+                "position": {
+                    "yaw": "20.6deg",
+                    "pitch": "21.2deg"
+                },
                 "pause": 0
             },
             {
-                "position": { "yaw": "185deg", "pitch": "2deg" },
+                "position": {
+                    "yaw": "185deg",
+                    "pitch": "2deg"
+                },
                 "pause": 0
             },
             {
-                "position": { "yaw": "165deg", "pitch": "-90deg" },
+                "position": {
+                    "yaw": "165deg",
+                    "pitch": "-90deg"
+                },
                 "pause": 0
             }
         ]

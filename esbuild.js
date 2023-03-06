@@ -52,6 +52,7 @@ const buildOptions = {
                     console.log("\u001b[36mTypeScript declarations generated!\u001b[37m")
                     // copy src/index.html to public/index.html
                     fs.copyFileSync("src/index.html", "public/index.html")
+                    fs.copyFileSync("src/settings.json", "public/settings.json")
                 })
             }
         },
