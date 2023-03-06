@@ -1,4 +1,5 @@
 # 360° Image Viewer
+[![Netlify Status](https://api.netlify.com/api/v1/badges/eb7d2c6e-6bcf-4641-951b-ef7376b4a620/deploy-status)](https://app.netlify.com/sites/360-player/deploys)
  
 ## Running the application
 
