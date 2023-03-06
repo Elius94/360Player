@@ -9,8 +9,8 @@ import path from "path"
 // INSTALL MAGICK IF YOU ARE ON LINUX
 console.log("\u001b[36mInstalling dependencies...\u001b[37m")
 if (process.platform === "linux") {
-    execSync("sudo apt update")
-    execSync("sudo apt install imagemagick")
+    execSync("apt update")
+    execSync("apt install imagemagick")
 } else if (process.platform === "win32") {
     execSync("choco install imagemagick")
 } else if (process.platform === "darwin") {
