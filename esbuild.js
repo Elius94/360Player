@@ -8,14 +8,6 @@ import path from "path"
 
 // INSTALL MAGICK IF YOU ARE ON LINUX
 console.log("\u001b[36mInstalling dependencies...\u001b[37m")
-/*if (process.platform === "linux") {
-    execSync("apt update")
-    execSync("apt install imagemagick")
-} else if (process.platform === "win32") {
-    execSync("choco install imagemagick")
-} else if (process.platform === "darwin") {
-    execSync("brew install imagemagick")
-}*/
 
 const INPUT_INAGE_BASE_PATH = "src/images/"
 const OUTPUT_IMAGE_PATH = "public/images/"
