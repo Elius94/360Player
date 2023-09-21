@@ -18,7 +18,7 @@ module.exports = {
             path: '/opt/web/srv.eliusoutdoor.com/360Player',
             'pre-deploy': 'git fetch --all',
             'post-deploy':
-                'source /root/.bashrc && npm install && npm run build && pm2 reload ecosystem.config.cjs && pm2 save ',
+                'source /root/.bashrc && npm install && npm run build && pm2 reload virtual-gallery && pm2 save ',
             env: {
 
             },
