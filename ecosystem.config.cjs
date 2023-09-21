@@ -10,7 +10,7 @@ module.exports = {
     }],
     deploy: {
         production: {
-            user: 'elius',
+            user: 'root',
             host: '194.163.139.154',
             key: 'deploy.key',
             ref: 'origin/master',
