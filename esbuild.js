@@ -4,9 +4,12 @@ import { execSync } from "child_process"
 import { build, context } from "esbuild"
 import fs from "fs"
 import figlet from "figlet"
-import Compress from "compress-images"
+import path from "path"
 
-const INPUT_IMAGE_PATH = "src/images/**/*.{jpg,JPG,jpeg,JPEG,png,svg,gif}"
+// INSTALL MAGICK IF YOU ARE ON LINUX
+console.log("\u001b[36mInstalling dependencies...\u001b[37m")
+
+const INPUT_INAGE_BASE_PATH = "src/images/"
 const OUTPUT_IMAGE_PATH = "public/images/"
 
 const pkg = JSON.parse(fs.readFileSync("./package.json"))
@@ -25,6 +28,8 @@ const banner = "/* eslint-disable linebreak-style */\n" +
     `   Repository: ${pkg.repository.url}\n\n` +
     `   Build date: ${new Date().toUTCString()}\n\n` +
     "   This program is free software: you can redistribute it and/or modify */\n\n"
+
+let firstBuild = true
 
 const buildOptions = {
     entryPoints: ["src/app.ts"],
@@ -50,32 +55,112 @@ const buildOptions = {
                     console.log("\u001b[36mTypeScript declarations generated!\u001b[37m")
                     // copy src/index.html to public/index.html
                     fs.copyFileSync("src/index.html", "public/index.html")
+                    fs.copyFileSync("src/settings.json", "public/settings.json")
                 })
             }
         },
         {
-            name: "CompressImagesPlugin",
+            name: "SplitIntoTilesPlugin",
             setup(build) {
                 build.onEnd(() => {
-                    console.log("\u001b[36mCompressing images...\u001b[37m")
-                    Compress(INPUT_IMAGE_PATH, OUTPUT_IMAGE_PATH, {
-                        compress_force: false,
-                        statistic: true,
-                        autoupdate: true,
-                        
-                    }, false,
-                        { jpg: { engine: "mozjpeg", command: ["-quality", "70"] } },
-                        { png: { engine: "false", command: false } },
-                        { svg: { engine: "false", command: false } },
-                        { gif: { engine: "false", command: false } },
-                        function (error, completed, statistic) {
-                            console.log("-------------");
-                            console.log(error);
-                            console.log(completed);
-                            console.log(statistic);
-                            console.log("-------------");
+                    if (!firstBuild) {
+                        return
+                    }
+                    firstBuild = false
+                    const columns = 16
+                    const rows = 8
+                    console.log("\u001b[36mSplitting into tiles...\u001b[37m")
+                    // iterate over all images in INPUT_INAGE_BASE_PATH and split them into tiles
+                    fs.readdir(INPUT_INAGE_BASE_PATH, (err, files) => {
+                        if (err) {
+                            console.log(err)
+                            return
                         }
-                    )
+                        files.forEach(file => {
+                            if (file.endsWith(".jpg") || file.endsWith(".JPG") || file.endsWith(".jpeg") || file.endsWith(".JPEG")) {
+                                const fileWithoutExtension = file.split(".")[0]
+                                // delete directory for tiles if it exists
+                                if (fs.existsSync(path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension))) {
+                                    fs.rmSync(path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension), { recursive: true })
+                                }
+                                // create directory for tiles
+                                fs.mkdirSync(path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension), { recursive: true })
+                                const fileSize = {
+                                    width: 0,
+                                    height: 0
+                                }
+                                // get image size
+                                switch (process.platform) {
+                                    case "darwin":
+                                        fileSize.width = execSync(`magick identify -format "%w" ${INPUT_INAGE_BASE_PATH}${file}`).toString().trim()
+                                        fileSize.height = execSync(`magick identify -format "%h" ${INPUT_INAGE_BASE_PATH}${file}`).toString().trim()
+                                        break
+                                    case "win32":
+                                        fileSize.width = execSync(`magick.exe identify -format "%w" ${INPUT_INAGE_BASE_PATH}${file}`).toString().trim()
+                                        fileSize.height = execSync(`magick.exe identify -format "%h" ${INPUT_INAGE_BASE_PATH}${file}`).toString().trim()
+                                        break
+                                    default:
+                                        fileSize.width = execSync(`identify -format "%w" ${INPUT_INAGE_BASE_PATH}${file}`).toString().trim()
+                                        fileSize.height = execSync(`identify -format "%h" ${INPUT_INAGE_BASE_PATH}${file}`).toString().trim()
+                                        break
+                                }
+                                const tileWidth = Math.floor(fileSize.width / columns)
+                                const tileHeight = Math.floor(fileSize.height / rows)
+                                // downsizing image to be able to split it into tiles
+                                const adaptedWidth = tileWidth * columns
+                                const adaptedHeight = tileHeight * rows
+                                switch (process.platform) {
+                                    case "darwin":
+                                        execSync(`magick ${INPUT_INAGE_BASE_PATH}${file} -resize ${adaptedWidth}x${adaptedHeight} -quality 70 ${OUTPUT_IMAGE_PATH}${file}`)
+                                        break
+                                    case "win32":
+                                        execSync(`magick.exe ${INPUT_INAGE_BASE_PATH}${file} -resize ${adaptedWidth}x${adaptedHeight} -quality 70 ${OUTPUT_IMAGE_PATH}${file}`)
+                                        break
+                                    default:
+                                        execSync(`convert ${INPUT_INAGE_BASE_PATH}${file} -resize ${adaptedWidth}x${adaptedHeight} -quality 70 ${OUTPUT_IMAGE_PATH}${file}`)
+                                        break
+                                }
+
+                                // make a copy of the downsized image in the 20% of resolution
+                                switch (process.platform) {
+                                    case "darwin":
+                                        execSync(`magick ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.jpg`)
+                                        break
+                                    case "win32":
+                                        execSync(`magick.exe ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.jpg`)
+                                        break
+                                    default:
+                                        execSync(`convert ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.jpg`)
+                                        break
+                                }
+
+                                // split image into tiles
+                                switch (process.platform) {
+                                    case "darwin":
+                                        execSync(`magick ${OUTPUT_IMAGE_PATH}${file} \
+                                        -crop ${tileWidth}x${tileHeight} \
+                                        -set filename:tile "%[fx:page.x/${tileWidth}]_%[fx:page.y/${tileHeight}]" \
+                                        -set filename:orig %t \
+                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].jpg`)
+                                        break
+                                    case "win32":
+                                        execSync(`magick.exe ${OUTPUT_IMAGE_PATH}${file} \
+                                        -crop ${tileWidth}x${tileHeight} \
+                                        -set filename:tile "%[fx:page.x/${tileWidth}]_%[fx:page.y/${tileHeight}]" \
+                                        -set filename:orig %t \
+                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].jpg`)
+                                        break
+                                    default:
+                                        execSync(`convert ${OUTPUT_IMAGE_PATH}${file} \
+                                        -crop ${tileWidth}x${tileHeight} \
+                                        -set filename:tile "%[fx:page.x/${tileWidth}]_%[fx:page.y/${tileHeight}]" \
+                                        -set filename:orig %t \
+                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].jpg`)
+                                        break
+                                }
+                            }
+                        })
+                    })
                 })
             }
         }
