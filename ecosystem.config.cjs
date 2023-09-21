@@ -16,10 +16,11 @@ module.exports = {
             ref: 'origin/master',
             repo: 'https://github.com/Elius94/360Player',
             path: '/opt/web/srv.eliusoutdoor.com/360Player',
+            'pre-deploy': 'git fetch --all',
             'post-deploy':
-                'npm install && npm run build && pm2 reload ecosystem.config.js --env production && pm2 save',
+                'source /root/.bashrc && npm install && npm run build && pm2 reload ecosystem.config.cjs && pm2 save ',
             env: {
-                NODE_ENV: 'production',
+
             },
         },
     },

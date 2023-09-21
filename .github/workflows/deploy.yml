@@ -26,13 +26,13 @@ jobs:
       - name: Create env file
         run: |
           touch .env
-      #     echo DATABASE_ADDRESS=${{ secrets.DATABASE_ADDRESS }} >> .env
+          # echo PATH=/root/.nvm/versions/node/v20.7.0/bin/npm:$PATH >> .env
 
       - name: Install PM2
-        run: npm i pm2
+        run: npm i -g pm2
 
       - name: Deploy
-        run: env $(cat .env | grep -v \"#\" | xargs) pm2 deploy ecosystem.config.js staging
-        # run: pm2 deploy ecosystem.config.js staging
+        # run: env $(cat .env | grep -v \"#\" | xargs) pm2 deploy ecosystem.config.cjs production
+        run: pm2 deploy ecosystem.config.cjs production
         # Or alternately, put this deploy script in your package.json's scripts and run it using yarn/npm:
         # run: yarn deploy
