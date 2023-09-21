@@ -13,7 +13,7 @@ module.exports = {
             user: 'elius',
             host: '194.163.139.154',
             key: 'deploy.key',
-            ref: 'origin/main',
+            ref: 'origin/master',
             repo: 'https://github.com/Elius94/360Player',
             path: '/opt/web/srv.eliusoutdoor.com/360Player',
             'post-deploy':
