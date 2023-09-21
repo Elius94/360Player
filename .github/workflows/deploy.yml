@@ -1,8 +1,10 @@
 name: Build and Deploy
 on:
-  push:
-    branches:
-      - master
+  # only when manually triggered
+  workflow_dispatch:
+  #push:
+  #  branches:
+  #    - master
 jobs:
   deploy:
     runs-on: ubuntu-latest
