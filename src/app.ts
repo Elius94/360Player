@@ -33,6 +33,7 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
     }
 
     let LITTLEPLANET_MAX_ZOOM = 130
+    const LITTLEPLANET_MIN_ZOOM = 14
     const LITTLEPLANET_DEF_LAT = -90
     const LITTLEPLANET_FISHEYE = 2
     const LITTLEPLANET_DEF_ZOOM = 0
@@ -70,6 +71,7 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
         defaultYaw: '130deg',
         fisheye: selectedPano.littlePlanet ? LITTLEPLANET_FISHEYE : false,
         maxFov: selectedPano.littlePlanet ? LITTLEPLANET_MAX_ZOOM : 90,
+        minFov: selectedPano.littlePlanet ? LITTLEPLANET_MIN_ZOOM : 40,
         defaultZoomLvl: selectedPano.littlePlanet ? LITTLEPLANET_DEF_ZOOM : 50,
         defaultPitch: selectedPano.littlePlanet ? LITTLEPLANET_DEF_LAT : 0,
         // when it undefined, = true, then use input value.
@@ -116,7 +118,7 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
                     // Disable Little Planet.
                     const p = viewer.getPlugin("autorotate") as AutorotatePlugin
                     if (p) p.start()
-                    viewer.setOption("maxFov", 40)
+                    viewer.setOption("maxFov", 70)
                     viewer.setOption("mousewheel", true)
                 })
             })
@@ -147,7 +149,8 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
                 const p = viewer.getPlugin("autorotate") as AutorotatePlugin
                 if (p) p.stop()
                 viewer.setOption("maxFov", LITTLEPLANET_MAX_ZOOM)
-                //viewer.setOption("fisheye", LITTLEPLANET_FISHEYE) // @ts-ignore ts(2345)
+                viewer.setOption("minFov", LITTLEPLANET_MIN_ZOOM)
+                viewer.setOption("fisheye", LITTLEPLANET_FISHEYE) // @ts-ignore ts(2345)
                 viewer.setOption("mousewheel", false)
                 viewer.animate({
                     yaw: 0,
