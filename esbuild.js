@@ -15,6 +15,7 @@ const OUTPUT_IMAGE_PATH = "public/images/"
 const pkg = JSON.parse(fs.readFileSync("./package.json"))
 
 const watch = process.argv.includes("--watch")
+const code = process.argv.includes("--just-code")
 const dev = process.argv.includes("--dev") || process.env.NODE_ENV === "development"
 
 const banner = "/* eslint-disable linebreak-style */\n" +
@@ -29,7 +30,7 @@ const banner = "/* eslint-disable linebreak-style */\n" +
     `   Build date: ${new Date().toUTCString()}\n\n` +
     "   This program is free software: you can redistribute it and/or modify */\n\n"
 
-let firstBuild = true
+let firstBuild = code ? false : true
 
 const buildOptions = {
     entryPoints: ["src/app.ts"],
