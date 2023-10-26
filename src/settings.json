@@ -89,8 +89,8 @@
             {
                 "id": "sun",
                 "position": {
-                    "yaw": "145deg",
-                    "pitch": "2deg"
+                    "yaw": "350deg",
+                    "pitch": "6deg"
                 }
             }
         ]
