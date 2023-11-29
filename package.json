@@ -20,11 +20,11 @@
   },
   "devDependencies": {
     "compress-images": "^2.0.5",
-    "esbuild": "^0.17.5",
-    "eslint": "^8.33.0",
-    "figlet": "^1.5.2",
+    "esbuild": "^0.19.8",
+    "eslint": "^8.54.0",
+    "figlet": "^1.7.0",
     "typescript-eslint": "^0.0.1-alpha.0",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.1.4"
   },
   "author": "Elia Lazzari",
   "license": "MIT",
@@ -33,13 +33,14 @@
   },
   "homepage": "https://github.com/Elius94/360viewer#readme",
   "dependencies": {
-    "@photo-sphere-viewer/autorotate-plugin": "^5.1.1",
-    "@photo-sphere-viewer/core": "^5.1.1",
-    "@photo-sphere-viewer/equirectangular-tiles-adapter": "^5.1.1",
-    "@photo-sphere-viewer/gyroscope-plugin": "^5.1.1",
-    "@photo-sphere-viewer/little-planet-adapter": "^5.1.1",
-    "@photo-sphere-viewer/stereo-plugin": "^5.1.1",
-    "photo-sphere-viewer-lensflare-plugin": "^1.0.3",
-    "typescript": "^4.9.5"
+    "@photo-sphere-viewer/autorotate-plugin": "^5.5.0",
+    "@photo-sphere-viewer/core": "^5.5.0",
+    "@photo-sphere-viewer/equirectangular-tiles-adapter": "^5.5.0",
+    "@photo-sphere-viewer/gallery-plugin": "^5.5.0",
+    "@photo-sphere-viewer/gyroscope-plugin": "^5.5.0",
+    "@photo-sphere-viewer/little-planet-adapter": "^5.5.0",
+    "@photo-sphere-viewer/stereo-plugin": "^5.5.0",
+    "photo-sphere-viewer-lensflare-plugin": "^2.0.1",
+    "typescript": "^5.3.2"
   }
 }

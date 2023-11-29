@@ -3,12 +3,14 @@ import { LensflarePlugin } from 'photo-sphere-viewer-lensflare-plugin';
 import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';
 import { AutorotatePlugin } from '@photo-sphere-viewer/autorotate-plugin';
 import { StereoPlugin } from '@photo-sphere-viewer/stereo-plugin';
+import { GalleryPlugin } from '@photo-sphere-viewer/gallery-plugin';
 import { EquirectangularTilesAdapter } from '@photo-sphere-viewer/equirectangular-tiles-adapter';
 //import { LittlePlanetAdapter } from '@photo-sphere-viewer/little-planet-adapter';
 import '@photo-sphere-viewer/core/index.css';
+import '@photo-sphere-viewer/gallery-plugin/index.css';
 
 const defaultNavbar = [
-    'autorotate', 'zoom', 'move', 'caption', 'gyroscope', 'stereo', 'fullscreen'
+    'autorotate', 'gallery', 'zoom', 'move', 'caption', 'gyroscope', 'stereo', 'fullscreen',
 ]
 
 interface SettingsItem {
@@ -79,6 +81,25 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
         mousewheel: selectedPano.littlePlanet ? false : true,
         navbar: filterNavbar(defaultNavbar),
         plugins: [
+            [GalleryPlugin, {
+                items: settings.map((item) => {
+                    return {
+                        id: item.id,
+                        name: item.description,
+                        visibleOnLoad: true,
+                        panorama: {
+                            width: 17920,
+                            cols: 16,
+                            rows: 8,
+                            baseUrl: `${baseUrl}/${item.url}_preview.jpg`,
+                            tileUrl: (col: number, row: number) => {
+                                return `${baseUrl}tiles/${item.url}/${item.url}_${col}_${row}.jpg`
+                            },
+                        },
+                        thumbnail: `${baseUrl}/${item.url}_preview.jpg`
+                    }
+                }),
+            }],
             GyroscopePlugin,
             [AutorotatePlugin, {
                 autostartDelay: 100000,
