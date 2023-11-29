@@ -86,7 +86,6 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
                     return {
                         id: item.id,
                         name: item.description,
-                        visibleOnLoad: true,
                         panorama: {
                             width: 17920,
                             cols: 16,
@@ -99,6 +98,8 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
                         thumbnail: `${baseUrl}/${item.url}_preview.jpg`
                     }
                 }),
+                visibleOnLoad: false,
+                hideOnClick: false,
             }],
             GyroscopePlugin,
             [AutorotatePlugin, {
