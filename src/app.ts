@@ -43,7 +43,7 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
 
     // parse arguments from the URL
     const args = new URLSearchParams(location.search);
-    const panorama = Number(args.get('panorama')) || 3;
+    const panorama = Number(args.get('panorama')) || 4;
     const selectedPano = settings.find((pano) => pano.id === panorama);
 
     if (!selectedPano || Number.isNaN(panorama) || !settings || settings.length < panorama) {

@@ -97,6 +97,23 @@
     },
     {
         "id": 5,
+        "url": "Civetta",
+        "name": "Flight Above M. Civetta Towers",
+        "image": "images/Civetta_HD.jpg",
+        "description": "Aerial Panorama of Dolomites",
+        "littlePlanet": true,
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "350deg",
+                    "pitch": "6deg"
+                }
+            }
+        ]
+    },
+    {
+        "id": 6,
         "url": "laugavegur",
         "name": "In the middle of Laugavegur (Iceland)",
         "image": "images/laugavegur.avif",
