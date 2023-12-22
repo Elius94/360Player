@@ -3,7 +3,7 @@
         "id": 0,
         "url": "thorsmork",
         "name": "Thormsork",
-        "image": "images/thorsmork.jxl",
+        "image": "images/thorsmork.jpg",
         "description": "Thorsmork Iceland 2023.",
         "littlePlanet": true,
         "lensflares": [],
@@ -128,6 +128,57 @@
         "name": "In the middle of Laugavegur (Iceland)",
         "image": "images/laugavegur.jpg",
         "description": "Aerial Panorafma of Laugavegur (Iceland), 2023. Taken after 3 km after Alfavatn lake.",
+        "littlePlanet": true,
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "350deg",
+                    "pitch": "6deg"
+                }
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "url": "thorsmork_2",
+        "name": "Thormsork",
+        "image": "images/thorsmork_2.jpg",
+        "description": "Aerial Panorama of Thorsmork (Iceland)",
+        "littlePlanet": true,
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "350deg",
+                    "pitch": "6deg"
+                }
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "url": "landmannalaugar",
+        "name": "Landmannalaugar Lava Field (Iceland)",
+        "image": "images/landmannalaugar.jpg",
+        "description": "Laugavegur trail start point. Landmannalaugar Lava Field (Iceland), 2023.",
+        "littlePlanet": true,
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "350deg",
+                    "pitch": "6deg"
+                }
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "url": "landmannalaugar_2",
+        "name": "Landmannalaugar Steaming Rivers (Iceland)",
+        "image": "images/landmannalaugar_2.jpg",
+        "description": "Landmannalaugar Steaming Rivers (Iceland), 2023.",
         "littlePlanet": true,
         "lensflares": [
             {
