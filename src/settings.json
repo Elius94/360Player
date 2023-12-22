@@ -190,4 +190,14 @@
         "lensflares": [],
         "autorotatePoints": []
     },
+    {
+        "id": 11,
+        "url": "monte-adone",
+        "name": "Monte Adone (Bologna)",
+        "image": "images/monte-adone.jpg",
+        "description": "Monte Adone (Bologna)",
+        "littlePlanet": true,
+        "lensflares": [],
+        "autorotatePoints": []
+    }
 ]
