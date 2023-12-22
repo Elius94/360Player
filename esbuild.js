@@ -78,7 +78,7 @@ const buildOptions = {
                             return
                         }
                         files.forEach(file => {
-                            if (file.endsWith(".jpg") || file.endsWith(".JPG") || file.endsWith(".jpeg") || file.endsWith(".JPEG")) {
+                            if (file.endsWith(".jpg") || file.endsWith(".JPG") || file.endsWith(".jpeg") || file.endsWith(".JPEG") || file.endsWith(".avif") || file.endsWith(".AVIF")) {
                                 const fileWithoutExtension = file.split(".")[0]
                                 // delete directory for tiles if it exists
                                 if (fs.existsSync(path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension))) {
@@ -122,16 +122,18 @@ const buildOptions = {
                                         break
                                 }
 
+                                const avif = file.endsWith(".avif") || file.endsWith(".AVIF")
+
                                 // make a copy of the downsized image in the 20% of resolution
                                 switch (process.platform) {
                                     case "darwin":
-                                        execSync(`magick ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.jpg`)
+                                        execSync(`magick ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.${avif? "avif" : "jpg"}`)
                                         break
                                     case "win32":
-                                        execSync(`magick.exe ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.jpg`)
+                                        execSync(`magick.exe ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.${avif? "avif" : "jpg"}`)
                                         break
                                     default:
-                                        execSync(`convert ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.jpg`)
+                                        execSync(`convert ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.${avif? "avif" : "jpg"}`)
                                         break
                                 }
 
@@ -142,24 +144,24 @@ const buildOptions = {
                                         -crop ${tileWidth}x${tileHeight} \
                                         -set filename:tile "%[fx:page.x/${tileWidth}]_%[fx:page.y/${tileHeight}]" \
                                         -set filename:orig %t \
-                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].jpg`)
+                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].${avif? "avif" : "jpg"}`)
                                         break
                                     case "win32":
                                         execSync(`magick.exe ${OUTPUT_IMAGE_PATH}${file} \
                                         -crop ${tileWidth}x${tileHeight} \
                                         -set filename:tile "%[fx:page.x/${tileWidth}]_%[fx:page.y/${tileHeight}]" \
                                         -set filename:orig %t \
-                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].jpg`)
+                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].${avif? "avif" : "jpg"}`)
                                         break
                                     default:
                                         execSync(`convert ${OUTPUT_IMAGE_PATH}${file} \
                                         -crop ${tileWidth}x${tileHeight} \
                                         -set filename:tile "%[fx:page.x/${tileWidth}]_%[fx:page.y/${tileHeight}]" \
                                         -set filename:orig %t \
-                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].jpg`)
+                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].${avif? "avif" : "jpg"}`)
                                         break
                                 }
-                            }
+                            } 
                         })
                     })
                 })

@@ -16,6 +16,7 @@ const defaultNavbar = [
 interface SettingsItem {
     id: number;
     url: string;
+    image: string;
     description: string;
     littlePlanet?: boolean;
     lensflares?: Array<any>;
@@ -53,6 +54,8 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
 
     let littlePlanetEnabled = selectedPano.littlePlanet;
 
+    const avif = selectedPano.image.endsWith(".avif")
+
     const baseUrl = "images/"
 
     const viewer = new Viewer({
@@ -64,9 +67,9 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
             width: 17920,
             cols: 16,
             rows: 8,
-            baseUrl: `${baseUrl}/${selectedPano.url}_preview.jpg`,
+            baseUrl: `${baseUrl}/${selectedPano.url}_preview.${avif ? "avif" : "jpg"}`,
             tileUrl: (col: number, row: number) => {
-                return `${baseUrl}tiles/${selectedPano.url}/${selectedPano.url}_${col}_${row}.jpg`
+                return `${baseUrl}tiles/${selectedPano.url}/${selectedPano.url}_${col}_${row}.${avif ? "avif" : "jpg"}`
             },
         },
         mousewheelCtrlKey: false,
@@ -83,6 +86,7 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
         plugins: [
             [GalleryPlugin, {
                 items: settings.map((item) => {
+                    const _avif = item.image.endsWith(".avif")
                     return {
                         id: item.id,
                         name: item.description,
@@ -90,12 +94,12 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
                             width: 17920,
                             cols: 16,
                             rows: 8,
-                            baseUrl: `${baseUrl}/${item.url}_preview.jpg`,
+                            baseUrl: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : "jpg"}`,
                             tileUrl: (col: number, row: number) => {
-                                return `${baseUrl}tiles/${item.url}/${item.url}_${col}_${row}.jpg`
+                                return `${baseUrl}tiles/${item.url}/${item.url}_${col}_${row}.${_avif ? "avif" : "jpg"}`
                             },
                         },
-                        thumbnail: `${baseUrl}/${item.url}_preview.jpg`
+                        thumbnail: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : "jpg"}`
                     }
                 }),
                 visibleOnLoad: false,

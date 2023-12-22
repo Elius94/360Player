@@ -94,5 +94,22 @@
                 }
             }
         ]
+    },
+    {
+        "id": 5,
+        "url": "laugavegur",
+        "name": "In the middle of Laugavegur (Iceland)",
+        "image": "images/laugavegur.avif",
+        "description": "Aerial Panorama of Laugavegur (Iceland), 2023. Taken after 3 km after Alfavatn lake.",
+        "littlePlanet": true,
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "350deg",
+                    "pitch": "6deg"
+                }
+            }
+        ]
     }
 ]
