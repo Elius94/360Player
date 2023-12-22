@@ -55,6 +55,7 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
     let littlePlanetEnabled = selectedPano.littlePlanet;
 
     const avif = selectedPano.image.endsWith(".avif")
+    const jxl = selectedPano.image.endsWith(".jxl")
 
     const baseUrl = "images/"
 
@@ -69,7 +70,7 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
             rows: 8,
             baseUrl: `${baseUrl}/${selectedPano.url}_preview.${avif ? "avif" : "jpg"}`,
             tileUrl: (col: number, row: number) => {
-                return `${baseUrl}tiles/${selectedPano.url}/${selectedPano.url}_${col}_${row}.${avif ? "avif" : "jpg"}`
+                return `${baseUrl}tiles/${selectedPano.url}/${selectedPano.url}_${col}_${row}.${avif ? "avif" : jxl ? "jxl" : "jpg"}`
             },
         },
         mousewheelCtrlKey: false,
@@ -87,6 +88,7 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
             [GalleryPlugin, {
                 items: settings.map((item) => {
                     const _avif = item.image.endsWith(".avif")
+                    const _jxl = item.image.endsWith(".jxl")
                     return {
                         id: item.id,
                         name: item.description,
@@ -94,12 +96,12 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
                             width: 17920,
                             cols: 16,
                             rows: 8,
-                            baseUrl: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : "jpg"}`,
+                            baseUrl: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`,
                             tileUrl: (col: number, row: number) => {
-                                return `${baseUrl}tiles/${item.url}/${item.url}_${col}_${row}.${_avif ? "avif" : "jpg"}`
+                                return `${baseUrl}tiles/${item.url}/${item.url}_${col}_${row}.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`
                             },
                         },
-                        thumbnail: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : "jpg"}`
+                        thumbnail: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`,
                     }
                 }),
                 visibleOnLoad: false,
