@@ -1,13 +1,12 @@
 [
     {
         "id": 1,
-        "url": "Giau_2",
-        "name": "Giau 2",
-        "image": "images/Giau_2.jpg",
-        "description": "Giau 2",
+        "url": "Cernera",
+        "name": "Monte Cernera",
+        "image": "images/Cernera.jpg",
+        "description": "Monte Cernera, Passo Giau (BL)",
         "littlePlanet": true,
-        "lensflares": [],
-        "autorotatePoints": []
+        "lensflares": []
     },
     {
         "id": 2,
@@ -15,6 +14,15 @@
         "name": "Giau 1",
         "image": "images/Giau_1.jpg",
         "description": "Giau 1",
+        "littlePlanet": true,
+        "lensflares": []
+    },
+    {
+        "id": 3,
+        "url": "Giau_2",
+        "name": "Giau 2",
+        "image": "images/Giau_2.jpg",
+        "description": "Giau 2",
         "littlePlanet": true,
         "lensflares": [
             {
@@ -36,10 +44,38 @@
                     "l": 0.2
                 }
             }
-        ]
+        ],
+        "autorotatePoints": []
     },
     {
-        "id": 3,
+        "id": 4,
+        "url": "Giau_3",
+        "name": "Giau 3",
+        "image": "images/Giau_3.jpg",
+        "description": "Giau 3",
+        "littlePlanet": true,
+        "lensflares": []
+    },
+    {
+        "id": 5,
+        "url": "Giau_4",
+        "name": "Giau 4",
+        "image": "images/Giau_4.jpg",
+        "description": "Giau 4",
+        "littlePlanet": true,
+        "lensflares": []
+    },
+    {
+        "id": 6,
+        "url": "Giau_5",
+        "name": "Giau 5",
+        "image": "images/Giau_5.jpg",
+        "description": "Giau 5",
+        "littlePlanet": true,
+        "lensflares": []
+    },
+    {
+        "id": 7,
         "url": "gardesana",
         "name": "Cima della Gardesana",
         "image": "images/gardesana.jpg",
@@ -79,7 +115,7 @@
         ]
     },
     {
-        "id": 4,
+        "id": 8,
         "url": "sky",
         "name": "Flight Above Dolomites Clouds",
         "image": "images/sky.jpg",
@@ -96,7 +132,7 @@
         ]
     },
     {
-        "id": 5,
+        "id": 9,
         "url": "Civetta_HD",
         "name": "Flight Above M. Civetta Towers",
         "image": "images/Civetta_HD.jpg",
@@ -113,7 +149,7 @@
         ]
     },
     {
-        "id": 6,
+        "id": 9,
         "url": "laugavegur",
         "name": "In the middle of Laugavegur (Iceland)",
         "image": "images/laugavegur.jpg",
@@ -130,7 +166,7 @@
         ]
     },
     {
-        "id": 7,
+        "id": 10,
         "url": "thorsmork_2",
         "name": "Thormsork",
         "image": "images/thorsmork_2.jpg",
@@ -147,7 +183,7 @@
         ]
     },
     {
-        "id": 8,
+        "id": 11,
         "url": "landmannalaugar",
         "name": "Landmannalaugar Lava Field (Iceland)",
         "image": "images/landmannalaugar.jpg",
@@ -164,7 +200,7 @@
         ]
     },
     {
-        "id": 9,
+        "id": 12,
         "url": "landmannalaugar_2",
         "name": "Landmannalaugar Steaming Rivers (Iceland)",
         "image": "images/landmannalaugar_2.jpg",
@@ -181,7 +217,7 @@
         ]
     },
     {
-        "id": 10,
+        "id": 13,
         "url": "thorsmork",
         "name": "Thormsork",
         "image": "images/thorsmork.jpg",
@@ -191,7 +227,7 @@
         "autorotatePoints": []
     },
     {
-        "id": 11,
+        "id": 14,
         "url": "monte-adone",
         "name": "Monte Adone (Bologna)",
         "image": "images/monte-adone.jpg",
@@ -201,11 +237,21 @@
         "autorotatePoints": []
     },
     {
-        "id": 12,
+        "id": 15,
         "url": "vette-feltrine",
         "name": "Vette Feltrine",
         "image": "images/vette-feltrine.jpg",
         "description": "Vette Feltrine, Pedavena (Belluno)",
+        "littlePlanet": true,
+        "lensflares": [],
+        "autorotatePoints": []
+    },
+    {
+        "id": 17,
+        "url": "Bologna",
+        "name": "Colli Bolognesi",
+        "image": "images/Bologna.jpg",
+        "description": "Colli Bolognesi",
         "littlePlanet": true,
         "lensflares": [],
         "autorotatePoints": []
