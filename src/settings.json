@@ -199,5 +199,15 @@
         "littlePlanet": true,
         "lensflares": [],
         "autorotatePoints": []
+    },
+    {
+        "id": 12,
+        "url": "vette-feltrine",
+        "name": "Vette Feltrine",
+        "image": "images/vette-feltrine.jpg",
+        "description": "Vette Feltrine, Pedavena (Belluno)",
+        "littlePlanet": true,
+        "lensflares": [],
+        "autorotatePoints": []
     }
 ]
