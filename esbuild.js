@@ -79,6 +79,7 @@ const buildOptions = {
                         }
                         files.forEach(file => {
                             if (file.endsWith(".jpg") || file.endsWith(".JPG") || file.endsWith(".jpeg") || file.endsWith(".JPEG") || file.endsWith(".avif") || file.endsWith(".AVIF") || file.endsWith(".jxl") || file.endsWith(".JXL")) {
+                                console.log(`\u001b[36mProcessing ${file}...\u001b[37m`)
                                 const fileWithoutExtension = file.split(".")[0]
                                 // delete directory for tiles if it exists
                                 if (fs.existsSync(path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension))) {
@@ -114,6 +115,8 @@ const buildOptions = {
                                 const avif = file.endsWith(".avif") || file.endsWith(".AVIF")
                                 const jxl = file.endsWith(".jxl") || file.endsWith(".JXL")
 
+                                console.log(`\u001b[36mDownsizing ${file} to ${adaptedWidth}x${adaptedHeight}...\u001b[37m`)
+
                                 switch (process.platform) {
                                     case "darwin":
                                         execSync(`magick ${INPUT_INAGE_BASE_PATH}${file} -resize ${adaptedWidth}x${adaptedHeight} -quality ${jxl || avif ? 80 : 70} ${OUTPUT_IMAGE_PATH}${file}`)
@@ -126,6 +129,7 @@ const buildOptions = {
                                         break
                                 }
 
+                                console.log(`\u001b[36mCreating preview of ${file}...\u001b[37m`)
 
                                 // make a copy of the downsized image in the 20% of resolution
                                 switch (process.platform) {
@@ -142,6 +146,8 @@ const buildOptions = {
                                         if (jxl) execSync(`convert ${OUTPUT_IMAGE_PATH}${file} -resize 30% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.jxl`)
                                         break
                                 }
+
+                                console.log(`\u001b[36mSplitting ${file} into tiles...\u001b[37m`)
 
                                 // split image into tiles
                                 switch (process.platform) {

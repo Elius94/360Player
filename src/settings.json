@@ -149,7 +149,7 @@
         ]
     },
     {
-        "id": 9,
+        "id": 10,
         "url": "laugavegur",
         "name": "In the middle of Laugavegur (Iceland)",
         "image": "images/laugavegur.jpg",
@@ -166,7 +166,7 @@
         ]
     },
     {
-        "id": 10,
+        "id": 11,
         "url": "thorsmork_2",
         "name": "Thormsork",
         "image": "images/thorsmork_2.jpg",
@@ -183,7 +183,7 @@
         ]
     },
     {
-        "id": 11,
+        "id": 12,
         "url": "landmannalaugar",
         "name": "Landmannalaugar Lava Field (Iceland)",
         "image": "images/landmannalaugar.jpg",
@@ -200,7 +200,7 @@
         ]
     },
     {
-        "id": 12,
+        "id": 13,
         "url": "landmannalaugar_2",
         "name": "Landmannalaugar Steaming Rivers (Iceland)",
         "image": "images/landmannalaugar_2.jpg",
@@ -217,7 +217,7 @@
         ]
     },
     {
-        "id": 13,
+        "id": 14,
         "url": "thorsmork",
         "name": "Thormsork",
         "image": "images/thorsmork.jpg",
@@ -227,7 +227,7 @@
         "autorotatePoints": []
     },
     {
-        "id": 14,
+        "id": 15,
         "url": "monte-adone",
         "name": "Monte Adone (Bologna)",
         "image": "images/monte-adone.jpg",
@@ -237,7 +237,7 @@
         "autorotatePoints": []
     },
     {
-        "id": 15,
+        "id": 16,
         "url": "vette-feltrine",
         "name": "Vette Feltrine",
         "image": "images/vette-feltrine.jpg",
