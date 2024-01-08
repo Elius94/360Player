@@ -258,7 +258,7 @@
     },
     {
         "id": 18,
-        "url": "Altissimo",
+        "url": "altissimo",
         "name": "Monte Altissimo di Nago",
         "image": "images/altissimo.jpg",
         "description": "Monte Altissimo di Nago (TN), Gruppo del Baldo",
@@ -268,7 +268,7 @@
     },
     {
         "id": 19,
-        "url": "Mondeval",
+        "url": "mondeval",
         "name": "Mondeval",
         "image": "images/mondeval.jpg",
         "description": "Sunset at Mondeval (BL), Dolomiti",
