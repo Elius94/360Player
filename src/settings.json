@@ -255,5 +255,25 @@
         "littlePlanet": true,
         "lensflares": [],
         "autorotatePoints": []
+    },
+    {
+        "id": 18,
+        "url": "Altissimo",
+        "name": "Monte Altissimo di Nago",
+        "image": "images/altissimo.jpg",
+        "description": "Monte Altissimo di Nago (TN), Gruppo del Baldo",
+        "littlePlanet": true,
+        "lensflares": [],
+        "autorotatePoints": []
+    },
+    {
+        "id": 19,
+        "url": "Mondeval",
+        "name": "Mondeval",
+        "image": "images/mondeval.jpg",
+        "description": "Sunset at Mondeval (BL), Dolomiti",
+        "littlePlanet": true,
+        "lensflares": [],
+        "autorotatePoints": []
     }
 ]
