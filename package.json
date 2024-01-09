@@ -11,6 +11,7 @@
   "scripts": {
     "lint": "eslint ./src/ --ext .ts",
     "build": "node ./esbuild.js && npx seo-injector --build-dir public --pretty true --verbose true",
+    "rebuild": "node ./esbuild.js --rebuild && npx seo-injector --build-dir public --pretty true --verbose true",
     "build:code": "node ./esbuild.js --just-code && npx seo-injector --build-dir public --pretty true --verbose true",
     "start": "node ./esbuild.js --watch --dev"
   },

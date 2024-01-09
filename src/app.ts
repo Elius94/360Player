@@ -3,7 +3,7 @@ import { LensflarePlugin } from 'photo-sphere-viewer-lensflare-plugin';
 import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';
 import { AutorotatePlugin } from '@photo-sphere-viewer/autorotate-plugin';
 import { StereoPlugin } from '@photo-sphere-viewer/stereo-plugin';
-import { GalleryPlugin } from '@photo-sphere-viewer/gallery-plugin';
+import { GalleryItem, GalleryPlugin } from '@photo-sphere-viewer/gallery-plugin';
 import { EquirectangularTilesAdapter } from '@photo-sphere-viewer/equirectangular-tiles-adapter';
 //import { LittlePlanetAdapter } from '@photo-sphere-viewer/little-planet-adapter';
 import '@photo-sphere-viewer/core/index.css';
@@ -86,24 +86,6 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
         navbar: filterNavbar(defaultNavbar),
         plugins: [
             [GalleryPlugin, {
-                items: settings.map((item) => {
-                    const _avif = item.image.endsWith(".avif")
-                    const _jxl = item.image.endsWith(".jxl")
-                    return {
-                        id: item.id,
-                        name: item.description,
-                        panorama: {
-                            width: 17920,
-                            cols: 16,
-                            rows: 8,
-                            baseUrl: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`,
-                            tileUrl: (col: number, row: number) => {
-                                return `${baseUrl}tiles/${item.url}/${item.url}_${col}_${row}.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`
-                            },
-                        },
-                        thumbnail: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`,
-                    }
-                }),
                 visibleOnLoad: false,
                 hideOnClick: false,
             }],
@@ -116,6 +98,33 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
             [LensflarePlugin, { lensflares: lensflaresSettings }]
         ],
     });
+
+    const onGalleryItemClicked = (id: GalleryItem['id']) => {
+        // add url parameter to the current url
+        const url = new URL(location.href);
+        url.searchParams.set('panorama', id.toString());
+        history.replaceState(null, '', url.toString());
+    };
+
+    const galleryPlugin = viewer.getPlugin(GalleryPlugin) as GalleryPlugin;
+    galleryPlugin.setItems(settings.map((item) => {
+        const _avif = item.image.endsWith(".avif")
+        const _jxl = item.image.endsWith(".jxl")
+        return {
+            id: item.id,
+            name: item.description,
+            panorama: {
+                width: 17920,
+                cols: 16,
+                rows: 8,
+                baseUrl: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`,
+                tileUrl: (col: number, row: number) => {
+                    return `${baseUrl}tiles/${item.url}/${item.url}_${col}_${row}.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`
+                },
+            },
+            thumbnail: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`,
+        }
+    }), onGalleryItemClicked);
 
     const lensflarePlugin = viewer.getPlugin(LensflarePlugin) as LensflarePlugin;
 
