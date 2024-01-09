@@ -14,6 +14,7 @@ const OUTPUT_IMAGE_PATH = "public/images/"
 
 const pkg = JSON.parse(fs.readFileSync("./package.json"))
 
+const hard = process.argv.includes("--hard") // distrugge il precedente build e ricostruisce le immagini da zero (lento) 
 const watch = process.argv.includes("--watch")
 const code = process.argv.includes("--just-code")
 const dev = process.argv.includes("--dev") || process.env.NODE_ENV === "development"
@@ -83,6 +84,10 @@ const buildOptions = {
                                 const fileWithoutExtension = file.split(".")[0]
                                 // delete directory for tiles if it exists
                                 if (fs.existsSync(path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension))) {
+                                    if (!hard) {
+                                        console.log(`\u001b[36mSkipping ${file} because it already exists...\u001b[37m`)
+                                        return
+                                    }
                                     fs.rmSync(path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension), { recursive: true })
                                 }
                                 // create directory for tiles
