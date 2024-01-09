@@ -114,7 +114,7 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
         const url = new URL(location.href);
         url.searchParams.set('panorama', id.toString());
         history.replaceState(null, '', url.toString());
-        const item = items.find((i) => i.id === id);
+        const item = items.find((i) => i.id === Number(id));
         if (!item) {
             throw new Error('Invalid panorama');
         }
