@@ -59,20 +59,31 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
 
     const baseUrl = "images/"
 
+    const items = settings.map((item) => {
+        const _avif = item.image.endsWith(".avif")
+        const _jxl = item.image.endsWith(".jxl")
+        return {
+            id: item.id,
+            name: item.description,
+            panorama: {
+                width: 17920,
+                cols: 16,
+                rows: 8,
+                baseUrl: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`,
+                tileUrl: (col: number, row: number) => {
+                    return `${baseUrl}tiles/${item.url}/${item.url}_${col}_${row}.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`
+                },
+            },
+            thumbnail: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`,
+        }
+    });
+
     const viewer = new Viewer({
         container: document.querySelector('#viewer') as HTMLElement,
         adapter: EquirectangularTilesAdapter,
         caption: 'Elia Lazzari <b>&copy; 2023</b> ' + selectedPano.description,
         touchmoveTwoFingers: false,
-        panorama: {
-            width: 17920,
-            cols: 16,
-            rows: 8,
-            baseUrl: `${baseUrl}/${selectedPano.url}_preview.${avif ? "avif" : "jpg"}`,
-            tileUrl: (col: number, row: number) => {
-                return `${baseUrl}tiles/${selectedPano.url}/${selectedPano.url}_${col}_${row}.${avif ? "avif" : jxl ? "jxl" : "jpg"}`
-            },
-        },
+        panorama: items[panorama].panorama,
         mousewheelCtrlKey: false,
         defaultYaw: '130deg',
         fisheye: selectedPano.littlePlanet ? LITTLEPLANET_FISHEYE : false,
@@ -106,32 +117,16 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
         const url = new URL(location.href);
         url.searchParams.set('panorama', id.toString());
         history.replaceState(null, '', url.toString());
-        if (galleryPlugin.config.items == null) return;
-        const item = galleryPlugin.config.items?.find((i) => i.id === id);
-        viewer.setPanorama(item?.panorama, {
-            caption: item?.name,
-            ...item?.options,
+        const item = items.find((i) => i.id === id);
+        if (!item) {
+            throw new Error('Invalid panorama');
+        }
+        viewer.setPanorama(item.panorama, {
+            caption: item.name,
         });
     };
 
-    galleryPlugin.setItems(settings.map((item) => {
-        const _avif = item.image.endsWith(".avif")
-        const _jxl = item.image.endsWith(".jxl")
-        return {
-            id: item.id,
-            name: item.description,
-            panorama: {
-                width: 17920,
-                cols: 16,
-                rows: 8,
-                baseUrl: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`,
-                tileUrl: (col: number, row: number) => {
-                    return `${baseUrl}tiles/${item.url}/${item.url}_${col}_${row}.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`
-                },
-            },
-            thumbnail: `${baseUrl}/${item.url}_preview.${_avif ? "avif" : _jxl ? "jxl" : "jpg"}`,
-        }
-    }), onGalleryItemClicked);
+    galleryPlugin.setItems(items, onGalleryItemClicked);
 
     const lensflarePlugin = viewer.getPlugin(LensflarePlugin) as LensflarePlugin;
 
