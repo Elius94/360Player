@@ -99,14 +99,21 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
         ],
     });
 
+    const galleryPlugin = viewer.getPlugin(GalleryPlugin) as GalleryPlugin;
+
     const onGalleryItemClicked = (id: GalleryItem['id']) => {
         // add url parameter to the current url
         const url = new URL(location.href);
         url.searchParams.set('panorama', id.toString());
         history.replaceState(null, '', url.toString());
+        if (galleryPlugin.config.items == null) return;
+        const item = galleryPlugin.config.items?.find((i) => i.id === id);
+        viewer.setPanorama(item?.panorama, {
+            caption: item?.name,
+            ...item?.options,
+        });
     };
 
-    const galleryPlugin = viewer.getPlugin(GalleryPlugin) as GalleryPlugin;
     galleryPlugin.setItems(settings.map((item) => {
         const _avif = item.image.endsWith(".avif")
         const _jxl = item.image.endsWith(".jxl")
