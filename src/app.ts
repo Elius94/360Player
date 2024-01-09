@@ -54,9 +54,6 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
 
     let littlePlanetEnabled = selectedPano.littlePlanet;
 
-    const avif = selectedPano.image.endsWith(".avif")
-    const jxl = selectedPano.image.endsWith(".jxl")
-
     const baseUrl = "images/"
 
     const items = settings.map((item) => {
