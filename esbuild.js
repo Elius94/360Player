@@ -86,8 +86,9 @@ const buildOptions = {
                                 const fileWithoutExtension = file.split(".")[0]
 
                                 if (just) {
-                                    if (!process.argv.includes(fileWithoutExtension)) {
-                                        console.log(`\u001b[36mSkipping ${file} because it is not selected...\u001b[37m`)
+                                    const justFiles = process.argv.filter((arg) => arg !== "--just")
+                                    if (!justFiles.includes(fileWithoutExtension)) {
+                                        console.log(`\u001b[36mSkipping ${file} because it is not in the list of files to process...\u001b[37m`)
                                         return
                                     }
                                 } 
