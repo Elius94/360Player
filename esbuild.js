@@ -90,16 +90,17 @@ const buildOptions = {
                                         console.log(`\u001b[36mSkipping ${file} because it is not selected...\u001b[37m`)
                                         return
                                     }
-                                }
-                                
+                                } 
+
                                 // delete directory for tiles if it exists
                                 if (fs.existsSync(path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension))) {
-                                    if (!rebuild) {
+                                    if (!rebuild && !just) {
                                         console.log(`\u001b[36mSkipping ${file} because it already exists...\u001b[37m`)
                                         return
                                     }
                                     fs.rmSync(path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension), { recursive: true })
                                 }
+
                                 // create directory for tiles
                                 fs.mkdirSync(path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension), { recursive: true })
                                 const fileSize = {
