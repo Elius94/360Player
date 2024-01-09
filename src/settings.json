@@ -275,5 +275,22 @@
         "littlePlanet": true,
         "lensflares": [],
         "autorotatePoints": []
+    },
+    {
+        "id": 20,
+        "url": "thorsmork_3",
+        "name": "Thormsork",
+        "image": "images/thorsmork_3.jpg",
+        "description": "Aerial Panorama of Thorsmork (Iceland)",
+        "littlePlanet": true,
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "350deg",
+                    "pitch": "6deg"
+                }
+            }
+        ]
     }
 ]
