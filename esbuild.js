@@ -15,6 +15,7 @@ const OUTPUT_IMAGE_PATH = "public/images/"
 const pkg = JSON.parse(fs.readFileSync("./package.json"))
 
 const rebuild = process.argv.includes("--rebuild") // distrugge il precedente build e ricostruisce le immagini da zero (lento) 
+const just = process.argv.includes("--just") // ricostruisce solo le immagini selezionate (veloce) "npm run build --just thorsmork,landmannalaugar"
 const watch = process.argv.includes("--watch")
 const code = process.argv.includes("--just-code")
 const dev = process.argv.includes("--dev") || process.env.NODE_ENV === "development"
@@ -72,6 +73,7 @@ const buildOptions = {
                     const columns = 16
                     const rows = 8
                     console.log("\u001b[36mSplitting into tiles...\u001b[37m")
+
                     // iterate over all images in INPUT_INAGE_BASE_PATH and split them into tiles
                     fs.readdir(INPUT_INAGE_BASE_PATH, (err, files) => {
                         if (err) {
@@ -82,6 +84,14 @@ const buildOptions = {
                             if (file.endsWith(".jpg") || file.endsWith(".JPG") || file.endsWith(".jpeg") || file.endsWith(".JPEG") || file.endsWith(".avif") || file.endsWith(".AVIF") || file.endsWith(".jxl") || file.endsWith(".JXL")) {
                                 console.log(`\u001b[36mProcessing ${file}...\u001b[37m`)
                                 const fileWithoutExtension = file.split(".")[0]
+
+                                if (just) {
+                                    if (!process.argv.includes(fileWithoutExtension)) {
+                                        console.log(`\u001b[36mSkipping ${file} because it is not selected...\u001b[37m`)
+                                        return
+                                    }
+                                }
+                                
                                 // delete directory for tiles if it exists
                                 if (fs.existsSync(path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension))) {
                                     if (!rebuild) {
