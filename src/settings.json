@@ -463,5 +463,58 @@
             "thorsmork"
         ],
         "littlePlanet": true
+    },
+    {
+        "id": 21,
+        "url": "averau",
+        "name": "Averau (BL)",
+        "image": "images/averau.jpg",
+        "description": "Averau (BL)",
+        "tags": [
+            "dolomiti",
+            "averau",
+            "sunset"
+        ],
+        "littlePlanet": true
+    },
+    {
+        "id": 22,
+        "url": "val-dei-cantoi",
+        "name": "Val dei Cantoi (BL)",
+        "image": "images/val-dei-cantoi.jpg",
+        "description": "Val dei Cantoi (BL)",
+        "tags": [
+            "dolomiti",
+            "val-dei-cantoi",
+            "sunset"
+        ],
+        "littlePlanet": true
+    },
+    {
+        "id": 23,
+        "url": "val-dei-cantoi-2",
+        "name": "Val dei Cantoi (BL)",
+        "image": "images/val-dei-cantoi-2.jpg",
+        "description": "Val dei Cantoi (BL)",
+        "tags": [
+            "dolomiti",
+            "val-dei-cantoi",
+            "sunset"
+        ],
+        "littlePlanet": true
+    },
+    {
+        "id": 24,
+        "url": "torre-venezia",
+        "name": "Torre Venezia (BL)",
+        "image": "images/torre-venezia.jpg",
+        "description": "Torre Venezia (BL)",
+        "tags": [
+            "dolomiti",
+            "val-dei-cantoi",
+            "sunset",
+            "torre-venezia"
+        ],
+        "littlePlanet": true
     }
 ]
