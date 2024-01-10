@@ -5,6 +5,13 @@
         "name": "Monte Cernera",
         "image": "images/Cernera.jpg",
         "description": "Monte Cernera, Passo Giau (BL)",
+        "tags": [
+            "dolomiti",
+            "dolomites",
+            "giau",
+            "passogiau",
+            "montecernera"
+        ],
         "littlePlanet": true,
         "lensflares": []
     },
@@ -14,6 +21,14 @@
         "name": "Giau 1",
         "image": "images/Giau_1.jpg",
         "description": "Giau 1",
+        "tags": [
+            "dolomiti",
+            "dolomites",
+            "giau",
+            "passogiau",
+            "montecernera",
+            "sunset"
+        ],
         "littlePlanet": true,
         "lensflares": []
     },
@@ -23,6 +38,14 @@
         "name": "Giau 2",
         "image": "images/Giau_2.jpg",
         "description": "Giau 2",
+        "tags": [
+            "dolomiti",
+            "dolomites",
+            "giau",
+            "passogiau",
+            "montecernera",
+            "sunset"
+        ],
         "littlePlanet": true,
         "lensflares": [
             {
@@ -53,6 +76,14 @@
         "name": "Giau 3",
         "image": "images/Giau_3.jpg",
         "description": "Giau 3",
+        "tags": [
+            "dolomiti",
+            "dolomites",
+            "giau",
+            "passogiau",
+            "montecernera",
+            "sunset"
+        ],
         "littlePlanet": true,
         "lensflares": []
     },
@@ -62,6 +93,14 @@
         "name": "Giau 4",
         "image": "images/Giau_4.jpg",
         "description": "Giau 4",
+        "tags": [
+            "dolomiti",
+            "dolomites",
+            "giau",
+            "passogiau",
+            "montecernera",
+            "sunset"
+        ],
         "littlePlanet": true,
         "lensflares": []
     },
@@ -71,6 +110,14 @@
         "name": "Giau 5",
         "image": "images/Giau_5.jpg",
         "description": "Giau 5",
+        "tags": [
+            "dolomiti",
+            "dolomites",
+            "giau",
+            "passogiau",
+            "montecernera",
+            "sunset"
+        ],
         "littlePlanet": true,
         "lensflares": []
     },
@@ -80,6 +127,12 @@
         "name": "Cima della Gardesana",
         "image": "images/gardesana.jpg",
         "description": "View from the bottom of the Gardesana Peak",
+        "tags": [
+            "dolomiti",
+            "dolomites",
+            "zoldo",
+            "gardesana"
+        ],
         "littlePlanet": true,
         "lensflares": [
             {
@@ -120,6 +173,11 @@
         "name": "Flight Above Dolomites Clouds",
         "image": "images/sky.jpg",
         "description": "Aerial Panorama of Dolomites Clouds",
+        "tags": [
+            "dolomiti",
+            "dolomites",
+            "clouds"
+        ],
         "littlePlanet": true,
         "lensflares": [
             {
@@ -137,6 +195,12 @@
         "name": "Flight Above M. Civetta Towers",
         "image": "images/Civetta_HD.jpg",
         "description": "Aerial Panorama of Dolomites",
+        "tags": [
+            "dolomiti",
+            "dolomites",
+            "civetta",
+            "civettatowers"
+        ],
         "littlePlanet": true,
         "lensflares": [
             {
@@ -154,6 +218,13 @@
         "name": "In the middle of Laugavegur (Iceland)",
         "image": "images/laugavegur.jpg",
         "description": "Aerial Panorafma of Laugavegur (Iceland), 2023. Taken after 3 km after Alfavatn lake.",
+        "tags": [
+            "iceland",
+            "laugavegur",
+            "landmannalaugar",
+            "hiking",
+            "trekking"
+        ],
         "littlePlanet": true,
         "lensflares": [
             {
@@ -171,6 +242,14 @@
         "name": "Thormsork",
         "image": "images/thorsmork_2.jpg",
         "description": "Aerial Panorama of Thorsmork (Iceland)",
+        "tags": [
+            "iceland",
+            "laugavegur",
+            "landmannalaugar",
+            "hiking",
+            "trekking",
+            "thorsmork"
+        ],
         "littlePlanet": true,
         "lensflares": [
             {
@@ -188,6 +267,14 @@
         "name": "Landmannalaugar Lava Field (Iceland)",
         "image": "images/landmannalaugar.jpg",
         "description": "Laugavegur trail start point. Landmannalaugar Lava Field (Iceland), 2023.",
+        "tags": [
+            "iceland",
+            "laugavegur",
+            "landmannalaugar",
+            "hiking",
+            "trekking",
+            "thorsmork"
+        ],
         "littlePlanet": true,
         "lensflares": [
             {
@@ -205,6 +292,14 @@
         "name": "Landmannalaugar Steaming Rivers (Iceland)",
         "image": "images/landmannalaugar_2.jpg",
         "description": "Landmannalaugar Steaming Rivers (Iceland), 2023.",
+        "tags": [
+            "iceland",
+            "laugavegur",
+            "landmannalaugar",
+            "hiking",
+            "trekking",
+            "thorsmork"
+        ],
         "littlePlanet": true,
         "lensflares": [
             {
@@ -222,6 +317,14 @@
         "name": "Thormsork",
         "image": "images/thorsmork.jpg",
         "description": "Thorsmork Iceland 2023.",
+        "tags": [
+            "iceland",
+            "laugavegur",
+            "landmannalaugar",
+            "hiking",
+            "trekking",
+            "thorsmork"
+        ],
         "littlePlanet": true,
         "lensflares": [],
         "autorotatePoints": []
@@ -232,6 +335,10 @@
         "name": "Monte Adone (Bologna)",
         "image": "images/monte-adone.jpg",
         "description": "Monte Adone (Bologna)",
+        "tags": [
+            "bologna",
+            "monte-adone"
+        ],
         "littlePlanet": true,
         "lensflares": [],
         "autorotatePoints": []
@@ -252,6 +359,10 @@
         "name": "Colli Bolognesi",
         "image": "images/Bologna.jpg",
         "description": "Colli Bolognesi",
+        "tags": [
+            "bologna",
+            "colli-bolognesi"
+        ],
         "littlePlanet": true,
         "lensflares": [],
         "autorotatePoints": []
@@ -262,6 +373,12 @@
         "name": "Monte Altissimo di Nago",
         "image": "images/altissimo.jpg",
         "description": "Monte Altissimo di Nago (TN), Gruppo del Baldo",
+        "tags": [
+            "baldo",
+            "monte-altissimo",
+            "nago",
+            "trentino"
+        ],
         "littlePlanet": true,
         "lensflares": [],
         "autorotatePoints": []
@@ -272,6 +389,11 @@
         "name": "Mondeval",
         "image": "images/mondeval.jpg",
         "description": "Sunset at Mondeval (BL), Dolomiti",
+        "tags": [
+            "dolomiti",
+            "mondeval",
+            "sunset"
+        ],
         "littlePlanet": true,
         "lensflares": [],
         "autorotatePoints": []
@@ -282,6 +404,14 @@
         "name": "Thormsork",
         "image": "images/thorsmork_3.jpg",
         "description": "Aerial Panorama of Thorsmork (Iceland)",
+        "tags": [
+            "iceland",
+            "laugavegur",
+            "landmannalaugar",
+            "hiking",
+            "trekking",
+            "thorsmork"
+        ],
         "littlePlanet": true,
         "lensflares": [
             {

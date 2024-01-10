@@ -43,18 +43,23 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
 
     // parse arguments from the URL
     const args = new URLSearchParams(location.search);
-    const panorama = Number(args.get('panorama')) || 4;
+    /* @ts-ignore */
+    const panorama = Number(args.get('panorama')) || __PANO__ || 4;
     const selectedPano = settings.find((pano) => pano.id === panorama);
-
+    
     if (!selectedPano || Number.isNaN(panorama) || !settings || settings.length < panorama) {
         throw new Error('Invalid panorama');
     }
+    
+    // replace ?panorama=X with item.url.toLowercase().html
+    args.get('panorama') && history.replaceState(null, '', selectedPano.url.toLowerCase() + '.html');
 
     const lensflaresSettings = selectedPano.lensflares;
 
     let littlePlanetEnabled = selectedPano.littlePlanet;
 
-    const baseUrl = "images/"
+    /* @ts-ignore */
+    const baseUrl = `images/`;
 
     const items = settings.map((item) => {
         const _avif = item.image.endsWith(".avif")
@@ -62,6 +67,7 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
         return {
             id: item.id,
             name: item.description,
+            url: item.url,
             panorama: {
                 width: 17920,
                 cols: 16,
@@ -80,7 +86,7 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
         adapter: EquirectangularTilesAdapter,
         caption: 'Elia Lazzari <b>&copy; 2023</b> ' + selectedPano.description,
         touchmoveTwoFingers: false,
-        panorama: items[panorama].panorama,
+        panorama: items.find((item) => item.id === panorama)?.panorama,
         mousewheelCtrlKey: false,
         defaultYaw: '130deg',
         fisheye: selectedPano.littlePlanet ? LITTLEPLANET_FISHEYE : false,
@@ -112,12 +118,18 @@ fetch("settings.json").then((response) => response.json()).then((settings: Array
     const onGalleryItemClicked = (id: GalleryItem['id']) => {
         // add url parameter to the current url
         const url = new URL(location.href);
-        url.searchParams.set('panorama', id.toString());
-        history.replaceState(null, '', url.toString());
         const item = items.find((i) => i.id === Number(id));
         if (!item) {
             throw new Error('Invalid panorama');
         }
+
+        // remove all url parameters 
+        url.searchParams.set('panorama', String(id));
+        history.replaceState(null, '', url.toString());
+        
+        // replace history to item.url.toLowercase() .html
+        history.replaceState(null, '', item?.url.toLowerCase() + '.html');
+        
         viewer.setPanorama(item.panorama, {
             caption: item.name,
         });

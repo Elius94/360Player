@@ -20,6 +20,8 @@ const watch = process.argv.includes("--watch")
 const code = process.argv.includes("--just-code")
 const dev = process.argv.includes("--dev") || process.env.NODE_ENV === "development"
 
+const site = "https://srv.eliusoutdoor.com/immersive/"
+
 const banner = "/* eslint-disable linebreak-style */\n" +
     "/*\n" +
     figlet.textSync("Eliusoutdoor 360Player", { horizontalLayout: "full", font: "Big" }) +
@@ -59,6 +61,48 @@ const buildOptions = {
                     // copy src/index.html to public/index.html
                     fs.copyFileSync("src/index.html", "public/index.html")
                     fs.copyFileSync("src/settings.json", "public/settings.json")
+
+                    const settings = JSON.parse(fs.readFileSync("src/settings.json"))
+                    
+                    settings.forEach((item) => {
+                        const panoPath = `public/${item.url.toLowerCase()}.html`
+                        if (fs.existsSync(panoPath)) {
+                            fs.rmSync(panoPath, { recursive: true })
+                        }
+
+                        // read index.html and replace "dist/app.js" with "../dist/app.js". then add a script tag with the variable __PANO__ set to the item.id
+                        let html = fs.readFileSync("src/index.html").toString()
+                        html = html.replace("__PANO__ = 4", `__PANO__ = ${item.id}`)
+
+                        // SEO stuff
+                        let seo = ""
+                        /*
+                            add the following tags:
+                            title, description, keywords, og:title, og:description, og:url, og:image, og:type, twitter:card, twitter:title, twitter:description, twitter:image, twitter:url
+
+                            the images are in public/images/${item.url}_preview.jpg
+                            the other tags are in src/settings.json
+                        */
+                        let keywords = "virtualtour, virtual, tour, vr, 360, photosphere, streetview" + item.tags?.map((tag) => `, ${tag}`).join("")
+
+                        seo += `<title>${item.name}</title>\n`
+                        seo += `    <meta name="description" content="${item.description}">\n`
+                        seo += `    <meta name="keywords" content="${keywords}">\n`
+                        seo += `    <meta property="og:title" content="${item.name}">\n`
+                        seo += `    <meta property="og:description" content="${item.description}">\n`
+                        seo += `    <meta property="og:url" content="${site}${item.url.toLowerCase()}.html">\n`
+                        seo += `    <meta property="og:image" content="${site}images/${item.url}_preview.jpg">\n`
+                        seo += `    <meta property="og:type" content="website">\n`
+                        seo += `    <meta name="twitter:card" content="summary_large_image">\n`
+                        seo += `    <meta name="twitter:title" content="${item.name}">\n`
+                        seo += `    <meta name="twitter:description" content="${item.description}">\n`
+                        seo += `    <meta name="twitter:image" content="${site}images/${item.url}_preview.jpg">\n`
+                        seo += `    <meta name="twitter:url" content="${site}${item.url.toLowerCase()}.html">\n`
+
+                        html = html.replace("<!-- __SEO__ -->", seo)
+
+                        fs.writeFileSync(panoPath, html)
+                    })
                 })
             }
         },
