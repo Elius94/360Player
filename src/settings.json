@@ -13,7 +13,15 @@
             "montecernera"
         ],
         "littlePlanet": true,
-        "lensflares": []
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "246deg",
+                    "pitch": "4deg"
+                }
+            }
+        ]
     },
     {
         "id": 2,
@@ -30,7 +38,20 @@
             "sunset"
         ],
         "littlePlanet": true,
-        "lensflares": []
+        "lensflares": [
+            {
+                "id": "moon",
+                "position": {
+                    "yaw": "30deg",
+                    "pitch": "41deg"
+                },
+                "color": {
+                    "h": 0.6,
+                    "s": 0.5,
+                    "l": 0.2
+                }
+            }
+        ]
     },
     {
         "id": 3,
@@ -49,17 +70,10 @@
         "littlePlanet": true,
         "lensflares": [
             {
-                "id": "sun",
-                "position": {
-                    "yaw": "145deg",
-                    "pitch": "2deg"
-                }
-            },
-            {
                 "id": "moon",
                 "position": {
-                    "yaw": "30.6deg",
-                    "pitch": "41.2deg"
+                    "yaw": "106deg",
+                    "pitch": "44deg"
                 },
                 "color": {
                     "h": 0.6,
@@ -85,7 +99,15 @@
             "sunset"
         ],
         "littlePlanet": true,
-        "lensflares": []
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "54deg",
+                    "pitch": "3deg"
+                }
+            }
+        ]
     },
     {
         "id": 5,
@@ -102,7 +124,27 @@
             "sunset"
         ],
         "littlePlanet": true,
-        "lensflares": []
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "122deg",
+                    "pitch": "3deg"
+                }
+            },
+            {
+                "id": "moon",
+                "position": {
+                    "yaw": "48deg",
+                    "pitch": "39deg"
+                },
+                "color": {
+                    "h": 0.6,
+                    "s": 0.5,
+                    "l": 0.2
+                }
+            }
+        ]
     },
     {
         "id": 6,
@@ -138,32 +180,9 @@
             {
                 "id": "sun",
                 "position": {
-                    "yaw": "100deg",
-                    "pitch": "45deg"
+                    "yaw": "104deg",
+                    "pitch": "37deg"
                 }
-            }
-        ],
-        "autorotatePoints": [
-            {
-                "position": {
-                    "yaw": "20.6deg",
-                    "pitch": "21.2deg"
-                },
-                "pause": 0
-            },
-            {
-                "position": {
-                    "yaw": "185deg",
-                    "pitch": "2deg"
-                },
-                "pause": 0
-            },
-            {
-                "position": {
-                    "yaw": "165deg",
-                    "pitch": "-90deg"
-                },
-                "pause": 0
             }
         ]
     },
@@ -183,8 +202,8 @@
             {
                 "id": "sun",
                 "position": {
-                    "yaw": "350deg",
-                    "pitch": "6deg"
+                    "yaw": "341deg",
+                    "pitch": "7deg"
                 }
             }
         ]
@@ -206,8 +225,8 @@
             {
                 "id": "sun",
                 "position": {
-                    "yaw": "350deg",
-                    "pitch": "6deg"
+                    "yaw": "169deg",
+                    "pitch": "5deg"
                 }
             }
         ]
@@ -230,8 +249,8 @@
             {
                 "id": "sun",
                 "position": {
-                    "yaw": "350deg",
-                    "pitch": "6deg"
+                    "yaw": "326deg",
+                    "pitch": "29deg"
                 }
             }
         ]
@@ -255,8 +274,8 @@
             {
                 "id": "sun",
                 "position": {
-                    "yaw": "350deg",
-                    "pitch": "6deg"
+                    "yaw": "84deg",
+                    "pitch": "2deg"
                 }
             }
         ]
@@ -280,8 +299,8 @@
             {
                 "id": "sun",
                 "position": {
-                    "yaw": "350deg",
-                    "pitch": "6deg"
+                    "yaw": "40deg",
+                    "pitch": "4deg"
                 }
             }
         ]
@@ -300,16 +319,7 @@
             "trekking",
             "thorsmork"
         ],
-        "littlePlanet": true,
-        "lensflares": [
-            {
-                "id": "sun",
-                "position": {
-                    "yaw": "350deg",
-                    "pitch": "6deg"
-                }
-            }
-        ]
+        "littlePlanet": true
     },
     {
         "id": 14,
@@ -326,7 +336,15 @@
             "thorsmork"
         ],
         "littlePlanet": true,
-        "lensflares": [],
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "136deg",
+                    "pitch": "3deg"
+                }
+            }
+        ],
         "autorotatePoints": []
     },
     {
@@ -340,7 +358,15 @@
             "monte-adone"
         ],
         "littlePlanet": true,
-        "lensflares": [],
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "74deg",
+                    "pitch": "1deg"
+                }
+            }
+        ],
         "autorotatePoints": []
     },
     {
@@ -350,7 +376,15 @@
         "image": "images/vette-feltrine.jpg",
         "description": "Vette Feltrine, Pedavena (Belluno)",
         "littlePlanet": true,
-        "lensflares": [],
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "160deg",
+                    "pitch": "0deg"
+                }
+            }
+        ],
         "autorotatePoints": []
     },
     {
@@ -380,7 +414,15 @@
             "trentino"
         ],
         "littlePlanet": true,
-        "lensflares": [],
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "292deg",
+                    "pitch": "2deg"
+                }
+            }
+        ],
         "autorotatePoints": []
     },
     {
@@ -395,7 +437,15 @@
             "sunset"
         ],
         "littlePlanet": true,
-        "lensflares": [],
+        "lensflares": [
+            {
+                "id": "sun",
+                "position": {
+                    "yaw": "223deg",
+                    "pitch": "12deg"
+                }
+            }
+        ],
         "autorotatePoints": []
     },
     {
@@ -412,15 +462,6 @@
             "trekking",
             "thorsmork"
         ],
-        "littlePlanet": true,
-        "lensflares": [
-            {
-                "id": "sun",
-                "position": {
-                    "yaw": "350deg",
-                    "pitch": "6deg"
-                }
-            }
-        ]
+        "littlePlanet": true
     }
 ]
