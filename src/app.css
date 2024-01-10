@@ -1,0 +1,77 @@
+/* showNavbarButton is semi-transparent until mouseover. positioned on bottom-center */
+.showNavbarButton {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+
+    background: rgba(0, 0, 0, 0.09);
+    bottom: 10px;
+    height: 30px;
+    width: 30px;
+    right: 10px;
+
+    transition: background 0.2s ease, color 0.2s ease;
+    
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+}
+
+.hideNavbarButton svg {
+    width: 100%;
+    transform: scale(1);
+    transition: transform .2s ease;
+    vertical-align: initial;
+    margin-top: -2;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+
+.toggleLensflareButton svg {
+    width: 100%;
+    transform: scale(1);
+    transition: transform .2s ease;
+    vertical-align: initial;
+    margin-top: -2;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+
+.resetLittlePlanetButton svg {
+    width: 100%;
+    transform: scale(1);
+    transition: transform .2s ease;
+    vertical-align: initial;
+    margin-top: -2;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+
+.icon-back-to-top {
+    fill: #FFFFFF;
+    height: 14px;
+    opacity: 0.51;
+    position: absolute;
+    width: 14px;
+}
+
+.icon-back-to-top {
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+}
