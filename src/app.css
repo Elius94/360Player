@@ -75,3 +75,12 @@
     position: absolute;
     top: 50%;
 }
+
+/* FOR IOS */
+.psv-container {
+    height: -webkit-fill-available !important;
+}
+
+.psv-custom-button {
+    width: 20px !important;
+}
