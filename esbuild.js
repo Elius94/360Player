@@ -63,7 +63,7 @@ const buildOptions = {
                     fs.copyFileSync("src/settings.json", "public/settings.json")
 
                     const settings = JSON.parse(fs.readFileSync("src/settings.json"))
-                    
+
                     settings.forEach((item) => {
                         const panoPath = `public/${item.url.toLowerCase()}.html`
                         if (fs.existsSync(panoPath)) {
@@ -135,7 +135,7 @@ const buildOptions = {
                                         console.log(`\u001b[36mSkipping ${file} because it is not in the list of files to process...\u001b[37m`)
                                         return
                                     }
-                                } 
+                                }
 
                                 // delete directory for tiles if it exists
                                 if (fs.existsSync(path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension))) {
@@ -178,16 +178,18 @@ const buildOptions = {
 
                                 console.log(`\u001b[36mDownsizing ${file} to ${adaptedWidth}x${adaptedHeight}...\u001b[37m`)
 
+                                const copyrightNotice = "Copyright © 2024 Elia Lazzari. All rights reserved.";
+
                                 switch (process.platform) {
                                     case "darwin":
-                                        execSync(`magick ${INPUT_INAGE_BASE_PATH}${file} -resize ${adaptedWidth}x${adaptedHeight} -quality ${jxl || avif ? 80 : 70} ${OUTPUT_IMAGE_PATH}${file}`)
-                                        break
+                                        execSync(`magick ${INPUT_INAGE_BASE_PATH}${file} -resize ${adaptedWidth}x${adaptedHeight} -quality ${jxl || avif ? 80 : 70} -strip -set comment "${copyrightNotice}" ${OUTPUT_IMAGE_PATH}${file}`);
+                                        break;
                                     case "win32":
-                                        execSync(`magick.exe ${INPUT_INAGE_BASE_PATH}${file} -resize ${adaptedWidth}x${adaptedHeight} -quality ${jxl || avif ? 80 : 70} ${OUTPUT_IMAGE_PATH}${file}`)
-                                        break
+                                        execSync(`magick.exe ${INPUT_INAGE_BASE_PATH}${file} -resize ${adaptedWidth}x${adaptedHeight} -quality ${jxl || avif ? 80 : 70} -strip -set comment "${copyrightNotice}" ${OUTPUT_IMAGE_PATH}${file}`);
+                                        break;
                                     default:
-                                        execSync(`convert ${INPUT_INAGE_BASE_PATH}${file} -resize ${adaptedWidth}x${adaptedHeight} -quality ${jxl || avif ? 80 : 70} ${OUTPUT_IMAGE_PATH}${file}`)
-                                        break
+                                        execSync(`convert ${INPUT_INAGE_BASE_PATH}${file} -resize ${adaptedWidth}x${adaptedHeight} -quality ${jxl || avif ? 80 : 70} -strip -set comment "${copyrightNotice}" ${OUTPUT_IMAGE_PATH}${file}`);
+                                        break;
                                 }
 
                                 console.log(`\u001b[36mCreating preview of ${file}...\u001b[37m`)
@@ -195,15 +197,15 @@ const buildOptions = {
                                 // make a copy of the downsized image in the 20% of resolution
                                 switch (process.platform) {
                                     case "darwin":
-                                        if (!jxl) execSync(`magick ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.${avif? "avif" : "jpg"}`)
+                                        if (!jxl) execSync(`magick ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.${avif ? "avif" : "jpg"}`)
                                         if (jxl) execSync(`magick ${OUTPUT_IMAGE_PATH}${file} -resize 30% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.jxl`)
                                         break
                                     case "win32":
-                                        if (!jxl) execSync(`magick.exe ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.${avif? "avif" : "jpg"}`)
+                                        if (!jxl) execSync(`magick.exe ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.${avif ? "avif" : "jpg"}`)
                                         if (jxl) execSync(`magick.exe ${OUTPUT_IMAGE_PATH}${file} -resize 30% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.jxl`)
                                         break
                                     default:
-                                        if (!jxl) execSync(`convert ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.${avif? "avif" : "jpg"}`)
+                                        if (!jxl) execSync(`convert ${OUTPUT_IMAGE_PATH}${file} -resize 20% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.${avif ? "avif" : "jpg"}`)
                                         if (jxl) execSync(`convert ${OUTPUT_IMAGE_PATH}${file} -resize 30% ${OUTPUT_IMAGE_PATH}${fileWithoutExtension}_preview.jxl`)
                                         break
                                 }
@@ -217,24 +219,24 @@ const buildOptions = {
                                         -crop ${tileWidth}x${tileHeight} \
                                         -set filename:tile "%[fx:page.x/${tileWidth}]_%[fx:page.y/${tileHeight}]" \
                                         -set filename:orig %t \
-                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].${avif? "avif" : jxl ? "jxl" : "jpg"}`)
+                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].${avif ? "avif" : jxl ? "jxl" : "jpg"}`)
                                         break
                                     case "win32":
                                         execSync(`magick.exe ${OUTPUT_IMAGE_PATH}${file} \
                                         -crop ${tileWidth}x${tileHeight} \
                                         -set filename:tile "%[fx:page.x/${tileWidth}]_%[fx:page.y/${tileHeight}]" \
                                         -set filename:orig %t \
-                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].${avif? "avif" : jxl ? "jxl" : "jpg"}`)
+                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].${avif ? "avif" : jxl ? "jxl" : "jpg"}`)
                                         break
                                     default:
                                         execSync(`convert ${OUTPUT_IMAGE_PATH}${file} \
                                         -crop ${tileWidth}x${tileHeight} \
                                         -set filename:tile "%[fx:page.x/${tileWidth}]_%[fx:page.y/${tileHeight}]" \
                                         -set filename:orig %t \
-                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].${avif? "avif" : jxl ? "jxl" : "jpg"}`)
+                                        ${path.join(OUTPUT_IMAGE_PATH, "tiles", fileWithoutExtension, "/")}%[filename:orig]_%[filename:tile].${avif ? "avif" : jxl ? "jxl" : "jpg"}`)
                                         break
                                 }
-                            } 
+                            }
                         })
                     })
                 })
